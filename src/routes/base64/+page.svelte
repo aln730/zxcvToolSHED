@@ -75,6 +75,20 @@
       color: #0830e2;
       text-decoration: none;
     }
+
+    .radio-group {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.radio-group label {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+	font-weight: normal;
+}
+
   </style>
   
   <div class="container">
@@ -86,25 +100,25 @@
     </nav>
   
     <form>
-      <div>
-        <label>
-          <input 
-            type="radio" 
-            bind:group={isEncoding} 
-            value={true}
-          />
-          Encode
-        </label>
-        <label>
-          <input 
-            type="radio" 
-            bind:group={isEncoding} 
-            value={false}
-          />
-          Decode
-        </label>
-      </div>
-  
+        <div class="radio-group">
+            <label>
+              <input 
+                type="radio" 
+                bind:group={isEncoding} 
+                value={true}
+              />
+              Encode
+            </label>
+            <label>
+              <input 
+                type="radio" 
+                bind:group={isEncoding} 
+                value={false}
+              />
+              Decode
+            </label>
+          </div>
+          
       <div>
         <label for="inputText">Input Text:</label>
         <textarea
