@@ -1,41 +1,32 @@
-<script lang="ts">
+<script>
 	import katex from 'katex';
 	import 'katex/dist/katex.min.css';
-	import jsPDF from 'jspdf';
-	import html2canvas from 'html2canvas';
 
 	let latexInput = '';
 	let renderedLatex = '';
-	let error: string | null = null;
+	let error = null;
 
-	function renderLatex() {
-		error = null;
-		try {
-			renderedLatex = katex.renderToString(latexInput, {
-				throwOnError: true,
-				displayMode: true
-			});
-		} catch (err: any) {
-			error = err.message;
-			renderedLatex = '';
-		}
-	}
+	let debounceTimeout;
 
-	async function exportToPDF() {
-		const outputEl = document.getElementById('rendered-output');
-		if (!outputEl) return;
+	$: latexInput, debounceRender();
 
-		const canvas = await html2canvas(outputEl);
-		const imgData = canvas.toDataURL('image/png');
-		const pdf = new jsPDF();
-
-		const imgWidth = 190;
-		const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-		pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
-		pdf.save('latex-output.pdf');
+	function debounceRender() {
+		clearTimeout(debounceTimeout);
+		debounceTimeout = setTimeout(() => {
+			try {
+				error = null;
+				renderedLatex = katex.renderToString(latexInput, {
+					throwOnError: true,
+					displayMode: true
+				});
+			} catch (err) {
+				error = err.message;
+				renderedLatex = '';
+			}
+		}, 50);
 	}
 </script>
+
 
 <style>
 	.container {
@@ -112,7 +103,6 @@
 	<div class="container">
 		<div class="box">
 			<textarea bind:value={latexInput} placeholder="Enter LaTeX here..."></textarea>
-			<button on:click={renderLatex}>Render</button>
             <button on:click={exportToPDF}>Download PDF</button>
 			{#if error}
 				<p class="error">{error}</p>
