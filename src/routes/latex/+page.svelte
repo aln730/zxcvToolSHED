@@ -1,6 +1,8 @@
 <script lang="ts">
 	import katex from 'katex';
 	import 'katex/dist/katex.min.css';
+	import jsPDF from 'jspdf';
+	import html2canvas from 'html2canvas';
 
 	let latexInput = '';
 	let renderedLatex = '';
@@ -17,6 +19,21 @@
 			error = err.message;
 			renderedLatex = '';
 		}
+	}
+
+	async function exportToPDF() {
+		const outputEl = document.getElementById('rendered-output');
+		if (!outputEl) return;
+
+		const canvas = await html2canvas(outputEl);
+		const imgData = canvas.toDataURL('image/png');
+		const pdf = new jsPDF();
+
+		const imgWidth = 190;
+		const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+		pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+		pdf.save('latex-output.pdf');
 	}
 </script>
 
@@ -77,18 +94,13 @@
 		text-decoration: none;
 	}
 
-	/* Style for the image */
-	img {
-		width: 100%;
-		max-width: 400px;
-		display: block;
-		margin: 0 auto 1rem;
-	}
+
     h2 a{
         color: #0830e2;
 		text-decoration: none;
         text-align: center;
     }
+
 </style>
 
 <h2><a href="https://quickref.me/latex">CLICK ME FOR QUICK REFERENCE!!</a></h2>
@@ -101,13 +113,15 @@
 		<div class="box">
 			<textarea bind:value={latexInput} placeholder="Enter LaTeX here..."></textarea>
 			<button on:click={renderLatex}>Render</button>
+            <button on:click={exportToPDF}>Download PDF</button>
 			{#if error}
 				<p class="error">{error}</p>
 			{/if}
 		</div>
 
-		<div class="box output">
-			{@html renderedLatex}
-		</div>
+        <div class="box output" id="rendered-output">
+            {@html renderedLatex}
+        </div>
+        
 	</div>
 </div>
