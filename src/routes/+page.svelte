@@ -2,7 +2,7 @@
 	const tools = [
 		{ name: '>Regex Tester<', path: '/regex' },
 		{ name: '>Base64 Encoder/Decoder<', path: '/base64' },
-		{ name: '>Markdown Previewer<', path: '/markdown' },
+		{ name: '>Latex Previewer<', path: '/latex' },
 		{ name: '>Password Generator<', path: '/password' },
 		{ name: '>Ping Tool<', path: '/ping' }
 	];

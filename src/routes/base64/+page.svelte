@@ -95,7 +95,7 @@
     <img src="/base649.png" alt="base64">
     <nav>
         <h1>
-        <a href="/">Home</a> &gt; <span>Regex Tester</span>
+        <a href="/">Home</a> &gt; <span>Base64 Encoder/Decoder</span>
     </h1>
     </nav>
   
