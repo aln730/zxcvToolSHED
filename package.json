@@ -1,0 +1,26 @@
+{
+	"name": "zxcvtoolshed",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"prepare": "svelte-kit sync || echo ''"
+	},
+	"devDependencies": {
+		"@eslint/css": "^0.7.0",
+		"@eslint/js": "^9.26.0",
+		"@eslint/markdown": "^6.4.0",
+		"@sveltejs/adapter-auto": "^6.0.0",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.16.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"eslint": "^9.26.0",
+		"globals": "^16.1.0",
+		"prettier": "^3.5.3",
+		"svelte": "^5.0.0",
+		"vite": "^6.2.6"
+	}
+}
