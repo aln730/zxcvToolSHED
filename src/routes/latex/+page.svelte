@@ -26,7 +26,6 @@
 
 				renderedLatex = `<pre style="white-space: pre-wrap; word-break: break-word; font-family: monospace;">${escaped}</pre>`;
 			} else {
-				// Use KaTeX for LaTeX syntax
 				renderedLatex = katex.renderToString(inputToRender, {
 					throwOnError: true,
 					displayMode: true
@@ -36,7 +35,7 @@
 			error = err.message;
 			renderedLatex = '';
 		}
-	}, 300);
+	}, 50);
 }
 
 

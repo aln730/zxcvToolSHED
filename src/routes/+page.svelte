@@ -4,7 +4,6 @@
 		{ name: '>Base64 Encoder/Decoder<', path: '/base64' },
 		{ name: '>Latex Previewer<', path: '/latex' },
 		{ name: '>Password Generator<', path: '/password' },
-		{ name: '>Ping Tool<', path: '/ping' }
 	];
 </script>
 <div id="axo">
