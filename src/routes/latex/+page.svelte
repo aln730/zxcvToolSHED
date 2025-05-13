@@ -15,7 +15,13 @@
 		debounceTimeout = setTimeout(() => {
 			try {
 				error = null;
-				renderedLatex = katex.renderToString(latexInput, {
+
+				let inputToRender = latexInput.trim();
+				if (!inputToRender.match(/\\[a-zA-Z]+|[\^\_\{\}]/)) {
+					inputToRender = `\\text{${inputToRender.replace(/([{}])/g, '\\$1')}}`;
+				}
+
+				renderedLatex = katex.renderToString(inputToRender, {
 					throwOnError: true,
 					displayMode: true
 				});
@@ -23,9 +29,10 @@
 				error = err.message;
 				renderedLatex = '';
 			}
-		}, 50);
+		}, 300);
 	}
 </script>
+
 
 
 <style>
@@ -56,7 +63,7 @@
 
 	button {
 		margin-top: 1rem;
-		padding: 0.75rem 1.5rem; /* Increased button size */
+		padding: 0.75rem 1.5rem; 
 		background-color: #017026;
 		color: white;
 		border: none;
@@ -64,15 +71,18 @@
 		cursor: pointer;
 	}
 
-	.output {
-		padding: 1.5rem; /* Increased padding in the output box */
-		border: 1px solid #ccc;
-		border-radius: 4px;
-		background: #f9f9f9;
-		color: #000;
-		min-height: 300px; /* Increased height for the output box */
-		box-sizing: border-box;
-	}
+    .output {
+	padding: 1.5rem;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: #f9f9f9;
+	color: #000;
+	min-height: 300px;
+	box-sizing: border-box;
+	overflow-wrap: break-word;
+	word-break: break-word;
+	white-space: normal;
+    }
 
 	.error {
 		color: darkred;
@@ -93,7 +103,7 @@
     }
 
 </style>
-
+<img src="LaTeX.png" width="150px" height="25px">
 <h2><a href="https://quickref.me/latex">CLICK ME FOR QUICK REFERENCE!!</a></h2>
 <div>
 	<nav>
