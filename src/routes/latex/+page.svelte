@@ -117,6 +117,7 @@
 		text-decoration: none;
 		text-align: center;
 	}
+
 </style>
 
 <img src="LaTeX.png" width="150px" height="25px" alt="LaTeX logo" />
