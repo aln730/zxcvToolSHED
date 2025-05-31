@@ -4,6 +4,7 @@
 		{ name: '>Base64 Encoder/Decoder<', path: '/base64' },
 		{ name: '>Latex Previewer<', path: '/latex' },
 		{ name: '>Password Generator<', path: '/password' },
+    {name: '>Markdown Editor<', path:'/markdown'}
 	];
 </script>
 <div id="axo">
