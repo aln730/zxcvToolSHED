@@ -55,7 +55,8 @@
   
     .box {
       flex: 1;
-      min-width: 550px;
+      min-width: 5
+      50px;
       height: 750px;
       display: flex;
       flex-direction: column;
@@ -63,7 +64,7 @@
     }
   
     textarea {
-      width: 100%;
+      width: 800px;
       height: 700px;
       padding: 1rem;
       font-size: 1rem;
@@ -92,6 +93,7 @@
       border-radius: 4px;
       background: #f9f9f9;
       color: #000;
+      width: 800px;
       min-height: 700px;
       font-family: Arial, sans-serif;
       font-size: 1rem;
